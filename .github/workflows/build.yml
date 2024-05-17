@@ -1,0 +1,23 @@
+name: cross compile dotnet app
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+    build:
+      runs-on: macos-14
+      steps:
+
+      - name: checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: build dotnet binaries
+        run: make build
+      - name: size of binaries
+        run: make size
