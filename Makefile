@@ -63,7 +63,7 @@ docker_build_linux_musl_arm64:
 	du -sh bin/linux-musl-arm64/hello_dotnet && \
 	ldd bin/linux-musl-arm64/hello_dotnet && \
 	./bin/linux-musl-arm64/hello_dotnet'
-docker_build_linux_musl_amd64:
+docker_build_linux_musl_x64:
 	docker run --platform=linux/amd64 --rm -v $(PWD):/app -w /app alpine /bin/sh -c \
 	'apk add dotnet8-sdk --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
 	apk add gcc musl-dev zlib-static && \

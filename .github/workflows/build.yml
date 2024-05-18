@@ -29,7 +29,7 @@ jobs:
       strategy:
         fail-fast: false
         matrix:
-          platform: [amd64, arm64]
+          platform: [x64, arm64]
       steps:
       - name: checkout
         uses: actions/checkout@v4
