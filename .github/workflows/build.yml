@@ -26,20 +26,22 @@ jobs:
   
     linux-static:
       runs-on: ubuntu-latest
+      strategy:
+        fail-fast: false
+        matrix:
+          platform: [amd64, arm64]
       steps:
-
       - name: checkout
         uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
+        if: matrix.platform == 'arm64'
         with:
           platforms: arm64    
-      - name: docker_build_linux_musl_amd64
-        run: make docker_build_linux_musl_amd64
-      - name: docker_build_linux_musl_arm64
-        run: make docker_build_linux_musl_arm64
+      - name: docker_build_linux_musl_${{ matrix.platform }}
+        run: make docker_build_linux_musl_${{ matrix.platform }}
       - name: size of binaries
-        run: make size
-      - name: file info
-        run: make file
+        run: du -sh ./bin/linux-musl-${{ matrix.platform }}/app
+      - name: run
+        run: ./bin/linux-musl-${{ matrix.platform }}/app
   
