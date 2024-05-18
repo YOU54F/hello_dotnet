@@ -21,7 +21,9 @@ jobs:
         run: make build
       - name: size of binaries
         run: make size
-
+      - name: file info
+        run: make file
+  
     linux-static:
       runs-on: ubuntu-latest
       steps:
@@ -38,3 +40,6 @@ jobs:
         run: make docker_build_linux_musl_arm64
       - name: size of binaries
         run: make size
+      - name: file info
+        run: make file
+  
