@@ -41,7 +41,7 @@ jobs:
       - name: docker_build_linux_musl_${{ matrix.platform }}
         run: make docker_build_linux_musl_${{ matrix.platform }}
       - name: size of binaries
-        run: du -sh ./bin/linux-musl-${{ matrix.platform }}/app
+        run: du -sh ./bin/linux-musl-${{ matrix.platform }}/hello_dotnet
       - name: run
-        run: ./bin/linux-musl-${{ matrix.platform }}/app
+        run: ./bin/linux-musl-${{ matrix.platform }}/hello_dotnet
   
