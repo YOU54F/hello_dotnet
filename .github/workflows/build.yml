@@ -21,3 +21,20 @@ jobs:
         run: make build
       - name: size of binaries
         run: make size
+
+    linux-static:
+      runs-on: ubuntu-latest
+      steps:
+
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64    
+      - name: docker_build_linux_musl_amd64
+        run: make docker_build_linux_musl_amd64
+      - name: docker_build_linux_musl_arm64
+        run: make docker_build_linux_musl_arm64
+      - name: size of binaries
+        run: make size
